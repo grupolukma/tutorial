@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.sidebar {
+  width: 260px;
+  background: #020617;
+  color: #e5e7eb;
+  height: 100vh;
+  position: fixed;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: #94a3b8;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.sidebar a:hover {
+  color: #38bdf8;
+}
+
+.content {
+  margin-left: 260px;
+  padding: 30px;
+  width: 100%;
+}
+
+.content h1 {
+  margin-bottom: 15px;
+}
+
+.content p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.tutorial-box {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+ol li {
+  margin-bottom: 8px;
+}
+
+img {
+  margin-top: 15px;
+  max-width: 100%;
+  border-radius: 6px;
+}
