@@ -5,17 +5,41 @@
 <title>Portal de Tutoriais</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="portal">
 
-<main class="content" style="margin-left:0;text-align:center">
-  <h1>Portal de Tutoriais</h1>
-  <p>Selecione o sistema que deseja aprender</p>
+  <main class="portal-container">
+    <h1>Portal de Tutoriais</h1>
+    <p>Selecione o sistema que deseja aprender</p>
 
-  <div style="margin-top:40px">
-    <a href="pages/lukma/index.html" class="system-btn">Lukma</a>
-    <a href="pages/lukbox/index.html" class="system-btn">Lukbox</a>
-  </div>
-</main>
+<div class="portal-systems">
+
+  <!-- CARD LUKMA -->
+  <a href="pages/lukma/index.html" class="system-card flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">
+        Lukma
+      </div>
+      <div class="flip-back">
+        <img src="assets/img/lukma.png" alt="Lukma">
+      </div>
+    </div>
+  </a>
+
+  <!-- CARD LUKBOX -->
+  <a href="pages/lukbox/index.html" class="system-card flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">
+        Lukbox
+      </div>
+      <div class="flip-back">
+        <img src="assets/img/lukbox.png" alt="Lukbox">
+      </div>
+    </div>
+  </a>
+
+</div>
+
+  </main>
 
 </body>
 </html>
