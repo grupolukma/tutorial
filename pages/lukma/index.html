@@ -3,29 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Lukma | Sistema de Tutoriais</title>
-<link rel="stylesheet" href="../../assets/css/lukma.css">
+<link rel="stylesheet" href="../../assets/css/lukbox.css">
 </head>
 <body>
 
 <!-- MENU LATERAL -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <a href="#" onclick="carregarPagina('inicio.html')">
+    <a href="#" onclick="carregarPagina('inicio.html'); return false;">
       <img src="../../assets/img/lukma.png" alt="Lukma">
     </a>
   </div>
 
-  <a href="#" onclick="carregarPagina('login.html')">Login</a>
-  <a href="#" onclick="carregarPagina('utilidades.html')">Utilidades</a>
-  <a href="#" onclick="carregarPagina('home.html')">Home</a>
-  <a href="#" onclick="carregarPagina('notificacoes.html')">Minhas Notificações</a>
-  <a href="#" onclick="carregarPagina('clientes.html')">Meus Clientes</a>
-  <a href="#" onclick="carregarPagina('vendas.html')">Minhas Vendas</a>
-  <a href="#" onclick="carregarPagina('prospects.html')">Meus Prospects</a>
-  <a href="#" onclick="carregarPagina('contatos.html')">Meus Contatos</a>
-  <a href="#" onclick="carregarPagina('metas.html')">Minhas Metas</a>
-  <a href="#" onclick="carregarPagina('produtos.html')">Produtos</a>
-  <a href="#" onclick="carregarPagina('comissoes.html')">Minhas Comissões</a>
+<a href="#" onclick="carregarPagina('login.html'); return false;">Login</a>
+<a href="#" onclick="carregarPagina('trocar-empresa.html'); return false;">Trocar empresa</a>
+<a href="#" onclick="carregarPagina('orcamento.html'); return false;">Fazer orçamento</a>
+<a href="#" onclick="carregarPagina('pedido.html'); return false;">Virar pedido</a>
+<a href="#" onclick="carregarPagina('desconto.html'); return false;">Desconto</a>
+<a href="#" onclick="carregarPagina('promocoes.html'); return false;">Promoção</a>
+<a href="#" onclick="carregarPagina('status-vendas.html'); return false;">Status vendas</a>
+
 
   <hr style="margin:15px 0;border-color:#1e293b">
 
@@ -34,7 +31,7 @@
   <!-- LOGO NO RODAPÉ -->
   <div class="sidebar-footer">
     <a href="https://wa.me/5517996074665" target="_blank" rel="noopener noreferrer">
-      <img src="../../assets/img/logo.png" alt="Lukma">
+      <img src="../../assets/img/logo-lukma.png" alt="Lukma">
     </a>
   </div>
 </aside>
@@ -47,9 +44,15 @@
 <script>
 function carregarPagina(pagina) {
   fetch(pagina)
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro ao carregar");
+      }
+      return response.text();
+    })
     .then(html => {
       document.getElementById("content").innerHTML = html;
+      document.querySelector(".content").scrollTop = 0;
     })
     .catch(() => {
       document.getElementById("content").innerHTML = `

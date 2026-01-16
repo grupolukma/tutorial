@@ -1,31 +1,57 @@
 /* ===============================
-   LAYOUT TUTORIAL LUKBOX
+   RESET + BASE
 ================================ */
 
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #0f172a;
   color: #e5e7eb;
-  display: flex;
+
+  height: 100vh;
+  overflow: hidden; /* 🔒 TRAVA O SCROLL DO BODY */
 }
 
-/* MENU LATERAL */
+/* ===============================
+   MENU LATERAL FIXO
+================================ */
+
 .sidebar {
+  position: fixed;       /* 🔒 FIXO NA TELA */
+  top: 0;
+  left: 0;
+
   width: 240px;
+  height: 100vh;
+
   background-color: #020617;
   padding: 20px;
   box-sizing: border-box;
-  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;      /* Scroll só se o menu for maior que a tela */
+  z-index: 1000;
 }
 
-.sidebar h2 {
-  color: #38bdf8;
-  margin-bottom: 20px;
-  font-size: 20px;
+/* LOGO NO TOPO DO MENU */
+.sidebar-logo {
   text-align: center;
+  margin-bottom: 20px;
 }
 
+.sidebar-logo img {
+  max-width: 160px;
+  height: auto;
+}
+
+/* LINKS DO MENU */
 .sidebar a {
   display: block;
   color: #cbd5f5;
@@ -41,19 +67,42 @@ body {
   color: #38bdf8;
 }
 
-/* CONTEÚDO */
-.content {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
+/* RODAPÉ DO MENU */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  text-align: center;
 }
 
-/* BOX DO TUTORIAL */
+.sidebar-footer img {
+  max-width: 70px;
+  opacity: 0.8;
+}
+
+/* ===============================
+   CONTEÚDO (SCROLL AQUI)
+================================ */
+
+.content {
+  margin-left: 240px;                  /* Espaço do menu */
+  width: calc(100% - 240px);
+  height: 100vh;
+
+  padding: 30px;
+  overflow-y: auto;                    /* ✅ SCROLL SOMENTE AQUI */
+
+  background-color: #0f172a;
+}
+
+/* ===============================
+   BOX DO TUTORIAL
+================================ */
+
 .tutorial-box {
   background-color: #020617;
   padding: 30px;
   border-radius: 10px;
-  max-width: 90;
+  max-width: 100%;
 }
 
 .tutorial-box h1 {
@@ -78,44 +127,14 @@ body {
   padding-left: 20px;
 }
 
+/* ===============================
+   VÍDEOS
+================================ */
+
 video {
   margin-top: 15px;
   border-radius: 8px;
   max-width: 100%;
-}
-
-/* RODAPÉ DO MENU LATERAL */
-.sidebar-footer {
-  margin-top: auto;
-  padding-top: 20px;
-  text-align: center;
-}
-
-.sidebar-footer img {
-  max-width: 70px;
-  opacity: 0.8;
-}
-
-.sidebar {
-  width: 240px;
-  background-color: #020617;
-  padding: 20px;
-  box-sizing: border-box;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-}
-
-/* LOGO NO TOPO DO MENU */
-.sidebar-logo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.sidebar-logo img {
-  max-width: 160px;
-  height: auto;
 }
 
 /* ===============================
@@ -125,7 +144,6 @@ video {
 .tutorial-img {
   display: block;
   max-width: 100%;
-  width: auto;
   height: auto;
 
   margin: 20px auto;
@@ -134,17 +152,14 @@ video {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Variação para imagens grandes (prints de tela) */
 .tutorial-img--large {
   max-width: 1000px;
 }
 
-/* Variação para imagens médias */
 .tutorial-img--medium {
   max-width: 700px;
 }
 
-/* Variação para imagens pequenas */
 .tutorial-img--small {
   max-width: 400px;
 }
