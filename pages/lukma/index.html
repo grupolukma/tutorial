@@ -2,85 +2,68 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Boas-vindas | Lukma</title>
+<title>Lukma | Sistema de Tutoriais</title>
 <link rel="stylesheet" href="../../assets/css/lukma.css">
 </head>
 <body>
 
 <!-- MENU LATERAL -->
 <aside class="sidebar">
-<div class="sidebar-logo">
-  <a href="index.html"><img src="../../assets/img/lukma.png" alt="Lukbox"></a>
-</div>
+  <div class="sidebar-logo">
+    <a href="#" onclick="carregarPagina('inicio.html')">
+      <img src="../../assets/img/lukma.png" alt="Lukma">
+    </a>
+  </div>
 
-
-  <a href="login.html">Login</a>
-  <a href="utilidades.html">Utilidades</a>
-  <a href="home.html">Home</a>
-  <a href="notificacoes.html">Minhas Notificações</a>
-  <a href="clientes.html">Meus Clientes</a>
-  <a href="vendas.html">Minhas Vendas</a>
-  <a href="prospects.html">Meus Prospects</a>
-  <a href="contatos.html">Meus Contatos</a>
-  <a href="metas.html">Minhas Metas</a>
-  <a href="produtos.html">Produtos</a>
-  <a href="comissoes.html">Minhas Comissões</a>
+  <a href="#" onclick="carregarPagina('login.html')">Login</a>
+  <a href="#" onclick="carregarPagina('utilidades.html')">Utilidades</a>
+  <a href="#" onclick="carregarPagina('home.html')">Home</a>
+  <a href="#" onclick="carregarPagina('notificacoes.html')">Minhas Notificações</a>
+  <a href="#" onclick="carregarPagina('clientes.html')">Meus Clientes</a>
+  <a href="#" onclick="carregarPagina('vendas.html')">Minhas Vendas</a>
+  <a href="#" onclick="carregarPagina('prospects.html')">Meus Prospects</a>
+  <a href="#" onclick="carregarPagina('contatos.html')">Meus Contatos</a>
+  <a href="#" onclick="carregarPagina('metas.html')">Minhas Metas</a>
+  <a href="#" onclick="carregarPagina('produtos.html')">Produtos</a>
+  <a href="#" onclick="carregarPagina('comissoes.html')">Minhas Comissões</a>
 
   <hr style="margin:15px 0;border-color:#1e293b">
+
   <a href="../../index.html">⬅ Trocar sistema</a>
 
-<!-- LOGO NO RODAPÉ -->
-<div class="sidebar-footer">
-  <a href="https://wa.me/5517996074665" target="_blank" rel="noopener noreferrer">
-    <img src="../../assets/img/logo.png" alt="Lukbox">
-  </a>
-</div>
-
-
+  <!-- LOGO NO RODAPÉ -->
+  <div class="sidebar-footer">
+    <a href="https://wa.me/5517996074665" target="_blank" rel="noopener noreferrer">
+      <img src="../../assets/img/logo.png" alt="Lukma">
+    </a>
+  </div>
 </aside>
 
-<!-- CONTEÚDO -->
-<main class="content">
-  <div class="tutorial-box">
-
-    <h1>Bem-vindo ao Tutorial do Sistema Lukma</h1>
-
-    <p>
-      Seja bem-vindo ao <strong>Lukma</strong>, o sistema desenvolvido para
-      facilitar sua rotina comercial, centralizar informações e oferecer
-      mais controle sobre vendas, clientes, metas e comissões.
-    </p>
-
-    <p>
-      Este tutorial foi criado para orientar você, passo a passo, no uso
-      de todas as funcionalidades disponíveis no sistema.
-    </p>
-
-    <h3>Como utilizar este tutorial</h3>
-    <ol>
-      <li>Utilize o menu lateral para navegar entre os módulos.</li>
-      <li>Cada menu possui explicação detalhada da funcionalidade.</li>
-      <li>Siga o passo a passo descrito em cada tela.</li>
-      <li>Assista aos vídeos explicativos sempre que necessário.</li>
-      <li>Em caso de dúvidas, revise o conteúdo ou acione o suporte.</li>
-    </ol>
-
-    <h3>O que você vai aprender</h3>
-    <ul>
-      <li>Como acessar o sistema e navegar pelos menus</li>
-      <li>visualizar clientes</li>
-      <li>Acompanhar vendas</li>
-      <li>Consultar produtos</li>
-      <li>Utilizar o sistema de forma eficiente no dia a dia</li>
-    </ul>
-
-    <p style="margin-top:15px;font-size:14px;color:#475569">
-      Recomendamos que você siga a ordem do menu, especialmente se for
-      seu primeiro acesso ao sistema Lukbox.
-    </p>
-
-  </div>
+<!-- CONTEÚDO DINÂMICO -->
+<main class="content" id="content">
+  <!-- Conteúdo carregado via JavaScript -->
 </main>
+
+<script>
+function carregarPagina(pagina) {
+  fetch(pagina)
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById("content").innerHTML = html;
+    })
+    .catch(() => {
+      document.getElementById("content").innerHTML = `
+        <div class="tutorial-box">
+          <h2>Erro</h2>
+          <p>Não foi possível carregar o conteúdo.</p>
+        </div>
+      `;
+    });
+}
+
+// Página inicial
+window.onload = () => carregarPagina("inicio.html");
+</script>
 
 </body>
 </html>
