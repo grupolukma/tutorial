@@ -116,7 +116,14 @@ function carregarPagina(pagina, linkClicado = null) {
       `;
     });
 }
+
+/* página inicio.html exibindo direto ao carregar*/
+window.onload = () => {
+  const primeiroLink = document.querySelector(".sidebar a[href='#']");
+  carregarPagina("inicio.html", primeiroLink);
+};
 </script>
+
 
 </body>
 </html>
