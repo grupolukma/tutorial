@@ -44,26 +44,55 @@
 </main>
 
 <script>
+function fecharTodosSubmenus() {
+  document.querySelectorAll(".menu-group").forEach(group => {
+    group.classList.remove("open");
+    const parent = group.querySelector(".menu-parent");
+    if (parent) parent.classList.remove("active");
+  });
+}
+
+function toggleSubmenu(element) {
+  const group = element.closest(".menu-group");
+  const aberto = group.classList.contains("open");
+
+  // Fecha tudo antes
+  fecharTodosSubmenus();
+
+  // Se não estava aberto, abre
+  if (!aberto) {
+    group.classList.add("open");
+    element.classList.add("active");
+  }
+}
+
 function carregarPagina(pagina, linkClicado = null) {
   fetch(pagina)
     .then(response => {
-      if (!response.ok) {
-        throw new Error("Erro ao carregar");
-      }
+      if (!response.ok) throw new Error("Erro ao carregar");
       return response.text();
     })
     .then(html => {
       document.getElementById("content").innerHTML = html;
-      document.querySelector(".content").scrollTop = 0;
 
-      // REMOVE ATIVO DE TODOS
+      // Remove todos os ativos
       document.querySelectorAll(".sidebar a").forEach(a => {
         a.classList.remove("active");
       });
 
-      // ADICIONA ATIVO NO CLICADO
+      // Fecha todos os submenus ao trocar de menu
+      fecharTodosSubmenus();
+
       if (linkClicado) {
         linkClicado.classList.add("active");
+
+        // Se for submenu, mantém o pai aberto e ativo
+        const group = linkClicado.closest(".menu-group");
+        if (group) {
+          group.classList.add("open");
+          const parent = group.querySelector(".menu-parent");
+          if (parent) parent.classList.add("active");
+        }
       }
     })
     .catch(() => {
@@ -75,14 +104,6 @@ function carregarPagina(pagina, linkClicado = null) {
       `;
     });
 }
-
-// Página inicial
-window.onload = () => {
-  const primeiroLink = document.querySelector(".sidebar a");
-  carregarPagina("inicio.html", primeiroLink);
-};
-</script>
-
 </script>
 
 </body>
