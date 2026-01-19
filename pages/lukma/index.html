@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Lukma | Sistema de Tutoriais</title>
-<link rel="stylesheet" href="../../assets/css/lukbox.css">
+<link rel="stylesheet" href="../../assets/css/lukma.css">
 </head>
 <body>
 
@@ -15,14 +15,12 @@
     </a>
   </div>
 
-<a href="#" onclick="carregarPagina('login.html'); return false;">Login</a>
-<a href="#" onclick="carregarPagina('trocar-empresa.html'); return false;">Trocar empresa</a>
-<a href="#" onclick="carregarPagina('orcamento.html'); return false;">Fazer orçamento</a>
-<a href="#" onclick="carregarPagina('pedido.html'); return false;">Virar pedido</a>
-<a href="#" onclick="carregarPagina('desconto.html'); return false;">Desconto</a>
-<a href="#" onclick="carregarPagina('promocoes.html'); return false;">Promoção</a>
-<a href="#" onclick="carregarPagina('controle-pedido.html'); return false;">Controle de pedido</a>
-<a href="#" onclick="carregarPagina('atualizacao.html'); return false;">Atualização</a>
+<a href="#" onclick="carregarPagina('login.html', this); return false;">Login</a>
+<a href="#" onclick="carregarPagina('trocar-empresa.html', this); return false;">Trocar empresa</a>
+<a href="#" onclick="carregarPagina('orcamentopedido.html', this); return false;">Fazer orçamentos | Pedidos</a>
+<a href="#" onclick="carregarPagina('promocoes.html', this); return false;">Promoção</a>
+<a href="#" onclick="carregarPagina('controle-pedido.html', this); return false;">Controle de pedido</a>
+<a href="#" onclick="carregarPagina('atualizacao.html', this); return false;">Atualização</a>
 
 
   <hr style="margin:15px 0;border-color:#1e293b">
@@ -34,6 +32,9 @@
     <a href="https://wa.me/5517996074665" target="_blank" rel="noopener noreferrer">
       <img src="../../assets/img/logo.png" alt="Lukma">
     </a>
+    <p style="margin-top:15px;font-size:14px;color:#475569">
+      Suporte
+    </p>
   </div>
 </aside>
 
@@ -43,7 +44,7 @@
 </main>
 
 <script>
-function carregarPagina(pagina) {
+function carregarPagina(pagina, linkClicado = null) {
   fetch(pagina)
     .then(response => {
       if (!response.ok) {
@@ -54,6 +55,16 @@ function carregarPagina(pagina) {
     .then(html => {
       document.getElementById("content").innerHTML = html;
       document.querySelector(".content").scrollTop = 0;
+
+      // REMOVE ATIVO DE TODOS
+      document.querySelectorAll(".sidebar a").forEach(a => {
+        a.classList.remove("active");
+      });
+
+      // ADICIONA ATIVO NO CLICADO
+      if (linkClicado) {
+        linkClicado.classList.add("active");
+      }
     })
     .catch(() => {
       document.getElementById("content").innerHTML = `
@@ -66,7 +77,12 @@ function carregarPagina(pagina) {
 }
 
 // Página inicial
-window.onload = () => carregarPagina("inicio.html");
+window.onload = () => {
+  const primeiroLink = document.querySelector(".sidebar a");
+  carregarPagina("inicio.html", primeiroLink);
+};
+</script>
+
 </script>
 
 </body>

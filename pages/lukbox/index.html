@@ -15,17 +15,25 @@
     </a>
   </div>
 
-  <a href="#" onclick="carregarPagina('login.html')">Login</a>
-  <a href="#" onclick="carregarPagina('utilidades.html')">Utilidades</a>
-  <a href="#" onclick="carregarPagina('home.html')">Home</a>
-  <a href="#" onclick="carregarPagina('notificacoes.html')">Minhas Notificações</a>
-  <a href="#" onclick="carregarPagina('clientes.html')">Meus Clientes</a>
-  <a href="#" onclick="carregarPagina('vendas.html')">Minhas Vendas</a>
-  <a href="#" onclick="carregarPagina('prospects.html')">Meus Prospects</a>
-  <a href="#" onclick="carregarPagina('contatos.html')">Meus Contatos</a>
-  <a href="#" onclick="carregarPagina('metas.html')">Minhas Metas</a>
-  <a href="#" onclick="carregarPagina('produtos.html')">Produtos</a>
-  <a href="#" onclick="carregarPagina('comissoes.html')">Minhas Comissões</a>
+<a href="#" onclick="carregarPagina('login.html', this); return false;">Login</a>
+<a href="#" onclick="carregarPagina('utilidades.html', this); return false;">Utilidades</a>
+<a href="#" onclick="carregarPagina('home.html', this); return false;">Home</a>
+<a href="#" onclick="carregarPagina('notificacoes.html', this); return false;">Minhas Notificações</a>
+<div class="menu-group">
+  <a href="#" class="menu-parent" onclick="toggleSubmenu(this); return false;">
+    Minhas Vendas
+  </a>
+
+  <div class="submenu">
+    <a href="#" onclick="carregarPagina('vendas-pedidos.html', this); return false;">Pedidos</a>
+    <a href="#" onclick="carregarPagina('vendas-orcamentos.html', this); return false;">Orçamentos</a>
+  </div>
+</div>
+<a href="#" onclick="carregarPagina('prospects.html', this); return false;">Meus Prospects</a>
+<a href="#" onclick="carregarPagina('contatos.html', this); return false;">Meus Contatos</a>
+<a href="#" onclick="carregarPagina('metas.html', this); return false;">Minhas Metas</a>
+<a href="#" onclick="carregarPagina('produtos.html', this); return false;">Produtos</a>
+<a href="#" onclick="carregarPagina('comissoes.html', this); return false;">Minhas Comissões</a>
 
   <hr style="margin:15px 0;border-color:#1e293b">
 
@@ -36,6 +44,9 @@
     <a href="https://wa.me/5517996074665" target="_blank" rel="noopener noreferrer">
       <img src="../../assets/img/logo.png" alt="Lukbox">
     </a>
+        <p style="margin-top:15px;font-size:14px;color:#475569">
+      Suporte
+    </p>
   </div>
 </aside>
 
@@ -45,11 +56,56 @@
 </main>
 
 <script>
-function carregarPagina(pagina) {
+function fecharTodosSubmenus() {
+  document.querySelectorAll(".menu-group").forEach(group => {
+    group.classList.remove("open");
+    const parent = group.querySelector(".menu-parent");
+    if (parent) parent.classList.remove("active");
+  });
+}
+
+function toggleSubmenu(element) {
+  const group = element.closest(".menu-group");
+  const aberto = group.classList.contains("open");
+
+  // Fecha tudo antes
+  fecharTodosSubmenus();
+
+  // Se não estava aberto, abre
+  if (!aberto) {
+    group.classList.add("open");
+    element.classList.add("active");
+  }
+}
+
+function carregarPagina(pagina, linkClicado = null) {
   fetch(pagina)
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) throw new Error("Erro ao carregar");
+      return response.text();
+    })
     .then(html => {
       document.getElementById("content").innerHTML = html;
+
+      // Remove todos os ativos
+      document.querySelectorAll(".sidebar a").forEach(a => {
+        a.classList.remove("active");
+      });
+
+      // Fecha todos os submenus ao trocar de menu
+      fecharTodosSubmenus();
+
+      if (linkClicado) {
+        linkClicado.classList.add("active");
+
+        // Se for submenu, mantém o pai aberto e ativo
+        const group = linkClicado.closest(".menu-group");
+        if (group) {
+          group.classList.add("open");
+          const parent = group.querySelector(".menu-parent");
+          if (parent) parent.classList.add("active");
+        }
+      }
     })
     .catch(() => {
       document.getElementById("content").innerHTML = `
@@ -60,9 +116,6 @@ function carregarPagina(pagina) {
       `;
     });
 }
-
-// Página inicial
-window.onload = () => carregarPagina("inicio.html");
 </script>
 
 </body>

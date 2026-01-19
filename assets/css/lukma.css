@@ -148,3 +148,23 @@ video {
 .tutorial-img--small {
   max-width: 400px;
 }
+
+/* ITEM ATIVO DO MENU */
+.sidebar a.active {
+  background-color: #1e293b;
+  color: #38bdf8;
+  font-weight: bold;
+  position: relative;
+}
+
+/* detalhe visual (opcional) */
+.sidebar a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #38bdf8;
+  border-radius: 4px;
+}
