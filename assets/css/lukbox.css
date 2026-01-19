@@ -107,17 +107,17 @@ body {
 
 .tutorial-box h1 {
   color: #38bdf8;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
-.tutorial-box h3 {
-  margin-top: 25px;
+.tutorial-box h2 {
+  margin-top: 1.3rem;
   color: #93c5fd;
 }
 
 .tutorial-box p,
 .tutorial-box li {
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 1.6;
   color: #e5e7eb;
 }
