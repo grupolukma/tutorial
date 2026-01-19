@@ -123,3 +123,40 @@ body.portal {
   max-width: 140px;
   max-height: 80px;
 }
+
+/* ===============================
+   RODAPÉ SUPORTE
+================================ */
+
+.portal-footer {
+  position: fixed;
+  bottom: 25px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  pointer-events: none; /* evita conflitos */
+}
+
+.portal-footer a {
+  pointer-events: auto; /* libera clique só no ícone */
+}
+
+.portal-footer img {
+  width: 60px;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.portal-footer img:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.portal-footer span {
+  font-size: 13px;
+  color: #64748b; /* cinza elegante */
+}
